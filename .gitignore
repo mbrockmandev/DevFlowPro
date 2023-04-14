@@ -2,3 +2,6 @@
 node_modules
 build
 
+frontend/public/favicon.ico
+frontend/public/logo192.png
+frontend/public/logo512.png

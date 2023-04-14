@@ -1,0 +1,18 @@
+BaseURL = http://localhost:3001/
+Routes Checklist: 
+
+
+Working:
+POST /api/users 
+POST /api/users/login
+GET /api/users/current
+
+Not Working:
+
+Unverified: 
+GET /api/tickets
+GET /api/ticket/:id
+POST /api/tickets
+PUT /api/ticket/:id
+DELETE /api/ticket/:id
+
