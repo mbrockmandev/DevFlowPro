@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import wind from '../wind.svg';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setToken } from '../reducers/TokenReducer';
 
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
 
   const handleMenuClick = (e) => {
     e.preventDefault();
-
-    const menuItemDiv = document.getElementById('menu-items');
-    console.log(menuItemDiv);
 
     const aTags = document.querySelectorAll('.menu-item');
     for (const tag of aTags) {
@@ -25,12 +23,13 @@ const Header = () => {
     }
   };
 
-  const handleLogout = async () => {
+  const handleLogout = async (e) => {
+    e.preventDefault();
     // send token to backend to be invalidated
-    console.log(token);
     await axios.post('/api/users/logout', token);
     localStorage.removeItem('jwt');
     dispatch(setToken(null));
+    navigate('/login');
   };
 
   return (
