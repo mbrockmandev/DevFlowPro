@@ -6,10 +6,11 @@ const User = require('../models/userModel');
 
 // helper function
 // (has outrageous expiration -- can expand this functionality by making it expire
-// faster and refresh token without prompting user)
-const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, {
-  expiresIn: '30d',
-});
+// faster and refresh token by having user log back in)
+const generateToken = (id) =>
+  jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  });
 
 // Register New User
 // POST /api/users
@@ -60,6 +61,9 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+  console.log(req.body);
+  console.log('LOGIN USER (BACKEND)', email, password);
+
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -82,6 +86,34 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// Logout User
+// POST /api/users/logout
+// Private
+const logoutUser = asyncHandler(async (req, res) => {
+  const { token } = req.body;
+  // blacklist.add(token);
+  res.status(200).json({ success: true });
+});
+
+// Check If Valid Token
+// POST /api/users/checkToken
+// Public
+const checkToken = (req, res, next) => {
+  const auth = req.get('authorization');
+
+  if (!auth || !auth.toLowerCase().startsWith('bearer ')) {
+    return res.status(401).json({ error: 'Invalid/Missing token.' });
+  }
+
+  const token = auth.substring(7);
+
+  const decodedToken = jwt.verify(token, process.env.SECRET);
+  req.token = token;
+  req.user = decodedToken;
+  res.status(200).json({ success: true });
+  next();
+};
+
 // Get the current user
 // GET /api/users/currentUser
 // Private
@@ -94,4 +126,10 @@ const getCurrentUser = asyncHandler(async (req, res) => {
   res.status(200).json(user);
 });
 
-module.exports = { registerUser, loginUser, getCurrentUser };
+module.exports = {
+  registerUser,
+  loginUser,
+  logoutUser,
+  getCurrentUser,
+  checkToken,
+};

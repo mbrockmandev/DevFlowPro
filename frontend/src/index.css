@@ -8,3 +8,8 @@
   borderwidth: 1;
   marginbottom: 5;
 }
+
+.input-form {
+  background: lightgrey;
+  border-radius: 5px;
+}

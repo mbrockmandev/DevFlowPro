@@ -2,15 +2,12 @@ import axios from "axios";
 const baseUrl = "/api/tickets";
 
 const applyAuthToken = (token) => {
-  return { headers: { Authorization: `Bearer ${token}` } };
+  return { headers: { Authorization: `bearer ${token}` } };
 };
 
 export const getAllTickets = async (token) => {
-  console.log("getAllTickets called");
-  console.log("token:", token);
-  const config = applyAuthToken(token);
+  const config = applyAuthToken(token.token);
   const res = await axios.get(baseUrl, config);
-  console.log("should be tickets=", res.data);
   return res.data;
 };
 

@@ -3,20 +3,20 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer class="fixed bottom-0 left-0 z-20 w-full bg-neutral-700 text-center text-white">
-        <div class="container px-6 pt-6">
-          <ul class="mb-6 flex justify-evenly">
+      <footer className="fixed bottom-0 left-0 z-20 w-full bg-neutral-700 text-center text-white">
+        <div className="container px-6 pt-6">
+          <ul className="mb-6 flex justify-evenly">
             <li>
               <a
                 href="https://twitter.com/mbdev20"
                 type="button"
-                class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                 data-te-ripple-init
                 data-te-ripple-color="light"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto h-full w-4"
+                  className="mx-auto h-full w-4"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -28,13 +28,13 @@ const Footer = () => {
               <a
                 href="https://linkedin.com/in/mbrockmandev"
                 type="button"
-                class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                 data-te-ripple-init
                 data-te-ripple-color="light"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto h-full w-4"
+                  className="mx-auto h-full w-4"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -46,13 +46,13 @@ const Footer = () => {
               <a
                 href="https://github.com/mbrockmandev"
                 type="button"
-                class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                 data-te-ripple-init
                 data-te-ripple-color="light"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="mx-auto h-full w-4"
+                  className="mx-auto h-full w-4"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -61,9 +61,9 @@ const Footer = () => {
               </a>
             </li>
           </ul>
-          <p class="text-gray-500 text-sm">
+          <p className="text-gray-500 text-sm">
             Copyright © 2023
-            <a href="/" class="text-gray-500 hover:text-white">
+            <a href="/" className="text-gray-500 hover:text-white">
               {" "}
               Mike Brockman
             </a>{" "}
