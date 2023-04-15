@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.notification {
+  border: solid;
+  padding: 10;
+  borderwidth: 1;
+  marginbottom: 5;
+}
