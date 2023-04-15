@@ -8,4 +8,4 @@ Dev Flow Pro is a kanban-style ticket tracker for software development intended 
 
 ## Link
 
-To be announced... (last update 4/10/2023)
+To be announced...
