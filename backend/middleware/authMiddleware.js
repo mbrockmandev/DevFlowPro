@@ -3,26 +3,18 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 
 const protect = asyncHandler(async (req, res, next) => {
-  const [, token] = req.headers.authorization.split(' ');
+  try {
+    const [, token] = req.headers.authorization.split(' ');
+    // verify
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-  if (token) {
-    try {
-      // verify
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // get user from token
+    req.user = await User.findById(decoded.id).select('-password');
 
-      // get user from token
-      req.user = await User.findById(decoded.id).select('-password');
-
-      next();
-    } catch (error) {
-      res.status(401);
-      throw new Error('Unauthorized Access (invalid token/user)!');
-    }
-  }
-
-  if (!token) {
+    next();
+  } catch (error) {
     res.status(401);
-    throw new Error('Unauthorized Access (no token)!');
+    throw new Error('Unauthorized Access (invalid token or user)!');
   }
 });
 

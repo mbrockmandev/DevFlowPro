@@ -3,7 +3,7 @@
 /// for development purposes, mongodb is in local docker image
 /// *************************************
 const express = require('express');
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 
 const PORT = process.env.PORT || 8000; // this will fail with local MongoDB if port is not 2717
 const { errorHandler } = require('./middleware/errorMiddleware');

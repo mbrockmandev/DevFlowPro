@@ -3,7 +3,6 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 const Ticket = require('../models/ticketModel');
 
-/// tickets functions
 // Get User Tickets
 // GET /api/tickets
 // Private
@@ -23,7 +22,7 @@ const getAllTickets = asyncHandler(async (req, res) => {
 });
 
 // Get Ticket by ID
-// GET /api/ticket/:id
+// GET /api/tickets/:id
 // Private
 const getTicketById = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
@@ -76,7 +75,7 @@ const createTicket = asyncHandler(async (req, res) => {
 });
 
 // Change Ticket by ID
-// PUT /api/ticket/:id
+// PUT /api/tickets/:id
 // Private
 const changeTicket = asyncHandler(async (req, res) => {
   const ticket = await Ticket.findById(req.params.id);
@@ -106,7 +105,7 @@ const changeTicket = asyncHandler(async (req, res) => {
 });
 
 // Delete Ticket by ID
-// DELETE /api/ticket/:id
+// DELETE /api/tickets/:id
 // Private
 const deleteTicket = asyncHandler(async (req, res) => {
   const ticket = await Ticket.findById(req.params.id);
