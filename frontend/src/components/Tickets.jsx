@@ -45,7 +45,7 @@ const Tickets = () => {
           New Ticket
         </button>
       </div>
-      {showModal && <NewTicketForm />}
+      {showModal && <NewTicketForm show={setShowModal} />}
     </div>
   );
 };

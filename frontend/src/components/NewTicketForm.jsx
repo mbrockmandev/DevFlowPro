@@ -1,11 +1,43 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { makeNewTicket } from '../reducers/TicketReducer';
 import { useState } from 'react';
 
-const NewTicketForm = () => {
+const NewTicketForm = ({ show }) => {
+  const dispatch = useDispatch();
+  const notification = useSelector((state) => state.notification);
+  const token = useSelector((state) => state.token);
+  const [description, setDescription] = useState('');
+  const [type, setType] = useState(null);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (description === '') return;
     // add new ticket stuff - dispatch etc.
+    console.log(token);
+
+    // dismiss modal
+    showHideModal(e);
   };
   // continue html work on add ticket form -- need to center the div, give more area for description, and handle submission (and clicking x button to dismiss modal)
+
+  const showHideModal = (e) => {
+    e.preventDefault();
+
+    // toggle modal visibility
+    const modalClasses = document.getElementById(
+      'authentication-modal',
+    ).classList;
+    // could use visibility = gone instead?
+    // consider resetting fields to blank?
+    if (modalClasses.contains('hidden')) {
+      modalClasses.remove('hidden');
+      show(true);
+    } else {
+      modalClasses.add('hidden');
+      show(false);
+    }
+  };
+
   return (
     <>
       <div
@@ -18,7 +50,8 @@ const NewTicketForm = () => {
             <button
               type='button'
               className='absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white'
-              data-modal-hide='authentication-modal'>
+              data-modal-hide='authentication-modal'
+              onClick={showHideModal}>
               <svg
                 aria-hidden='true'
                 className='w-5 h-5'
@@ -43,16 +76,18 @@ const NewTicketForm = () => {
                   <label
                     htmlFor='issue'
                     className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
-                    Your issue:
+                    Issue Type:
                   </label>
-                  <input
-                    type='text'
-                    name='issue'
+                  <select
                     id='issue'
-                    className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'
-                    placeholder='Epic'
-                    required
-                  />
+                    name='issue'
+                    className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'
+                    onChange={({ target }) => setType(target.value)}>
+                    <option value='Epic'>Epic</option>
+                    <option value='Story'>Story</option>
+                    <option value='Task'>Task</option>
+                    <option value='Subtask'>Subtask</option>
+                  </select>
                 </div>
                 <div>
                   <label
@@ -64,8 +99,10 @@ const NewTicketForm = () => {
                     type='description'
                     name='description'
                     id='description'
+                    value={description}
+                    onChange={({ target }) => setDescription(target.value)}
                     placeholder='I need it to be 50% smaller and 100% more on time.'
-                    className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'
+                    className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'
                     required
                   />
                 </div>
@@ -76,7 +113,8 @@ const NewTicketForm = () => {
                 </div>
                 <button
                   type='submit'
-                  className='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+                  className='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                  onClick={handleSubmit}>
                   Add Ticket
                 </button>
               </form>

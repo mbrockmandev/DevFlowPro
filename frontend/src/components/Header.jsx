@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className='flex items-center justify-between flex-wrap bg-amber-600 p-6'>
+      <nav className='flex items-center justify-between flex-wrap bg-blue-700 p-6'>
         <div className='flex items-center flex-shrink-0 text-white mr-6'>
           <img
             src={wind}
@@ -50,7 +50,7 @@ const Header = () => {
           id='menu-toggle'
           className='block md:hidden'>
           <button
-            className='flex items-center px-3 py-2 border rounded text-amber-200 border-amber-400 hover:text-white hover:border-white'
+            className='flex items-center px-3 py-2 border rounded text-blue-100 border-blue-400 hover:text-white hover:border-white'
             onClick={handleMenuClick}>
             <svg
               className='fill-current h-3 w-3'
@@ -67,17 +67,17 @@ const Header = () => {
           <div className='text-sm md:flex-grow'>
             <Link
               to='/tickets'
-              className='hidden menu-item mt-4 md:inline-block md:mt-0 text-amber-200 hover:text-white mr-4'>
+              className='hidden menu-item mt-4 md:inline-block md:mt-0 text-blue-200 hover:text-white mr-4'>
               Tickets
             </Link>
             <Link
               to='/admin'
-              className='hidden menu-item mt-4 md:inline-block md:mt-0 text-amber-200 hover:text-white mr-4'>
+              className='hidden menu-item mt-4 md:inline-block md:mt-0 text-blue-200 hover:text-white mr-4'>
               Admin
             </Link>
             <Link // may later change to swagger ui from front end
               to='http://localhost:3001/api/help'
-              className='hidden menu-item mt-4 md:inline-block md:mt-0 text-amber-200 hover:text-white'>
+              className='hidden menu-item mt-4 md:inline-block md:mt-0 text-blue-200 hover:text-white'>
               API
             </Link>
           </div>
@@ -85,7 +85,7 @@ const Header = () => {
             {token.isValid && (
               <Link
                 to='/login'
-                className='inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-amber-500 hover:bg-white mt-4 md:mt-0'
+                className='inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0'
                 onClick={handleLogout}>
                 Logout
               </Link>
@@ -93,7 +93,7 @@ const Header = () => {
             {!token.isValid && (
               <Link
                 to='/login'
-                className='inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-amber-500 hover:bg-white mt-4 md:mt-0'>
+                className='inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0'>
                 Login
               </Link>
             )}
