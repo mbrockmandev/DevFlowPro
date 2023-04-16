@@ -80,6 +80,7 @@ const createTicket = asyncHandler(async (req, res) => {
 // Private
 const changeTicket = asyncHandler(async (req, res) => {
   const ticket = await Ticket.findById(req.params.id);
+  console.log('backend ticket:', ticket);
 
   if (!ticket) {
     res.status(401);

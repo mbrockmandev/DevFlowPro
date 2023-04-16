@@ -17,9 +17,7 @@ const ticketSlice = createSlice({
       return [...state, action.payload];
     },
     applyChangesToTicket(state, action) {
-      const newState = state.map((t) =>
-        t.id === action.payload.id ? action.payload : t
-      );
+      const newState = state.map((t) => t._id === action.payload.id ? action.payload : t);
       return newState;
     },
     applyDelete(state, action) {

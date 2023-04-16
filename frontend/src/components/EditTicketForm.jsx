@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { applyUpdatesToTicket } from "../reducers/TicketReducer";
+import { applyUpdatesToTicket } from "../reducers/TicketReducer"
 import { useState } from "react";
 
 const EditTicketForm = ({ ticket, setShowEditModal }) => {
-  console.log('editTicketForm loaded!')
   // tbd
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.notification);
@@ -16,17 +15,14 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
     e.preventDefault();
     if (description === "") return;
     // edit ticket info -- dispatch
-    if (issue !== ticket.issue || ticket.description ) {
-      const editedTicket = { issue, description }
+    if (issue !== ticket.issue || description !== ticket.description) {
+      const editedTicket = { id: ticket._id, issue, description }
+      // console.log('editedTicket:', editedTicket);
+      dispatch(applyUpdatesToTicket(editedTicket, token.token))
     }
-    // const editedTicket = { issue, description, status: "New" };
-    // console.log("handleSubmit new ticket: ", newTicket);
-    // dispatch(applyUpdatesToTicket(newTicket, token.token));
-
     // dismiss modal
     showHideModal(e);
   };
-
 
   // tbd
   const showHideModal = (e) => {
@@ -45,10 +41,8 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
     }
   };
 
-  // tbd
   const handleChangeIssue = (e) => {
-    // setIssue(e.target.value);
-    console.log("issue:", issue, e.target.value);
+    setIssue(e.target.value);
   };
 
   // tbd
@@ -136,7 +130,7 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
                   className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   onClick={handleSubmit}
                 >
-                  Add Ticket
+                  Modify Ticket
                 </button>
               </form>
             </div>

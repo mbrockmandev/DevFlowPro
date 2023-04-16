@@ -12,16 +12,12 @@ const NewTicketForm = ({ show }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (description === "") return;
-    // add new ticket stuff - dispatch etc.
-    console.log(token);
     const newTicket = { issue, description, status: "New" };
-    console.log("handleSubmit new ticket: ", newTicket);
     dispatch(makeNewTicket(newTicket, token.token));
 
     // dismiss modal
     showHideModal(e);
   };
-  // continue html work on add ticket form -- need to center the div, give more area for description, and handle submission (and clicking x button to dismiss modal)
 
   const showHideModal = (e) => {
     e.preventDefault();
@@ -41,7 +37,6 @@ const NewTicketForm = ({ show }) => {
 
   const handleChangeIssue = (e) => {
     setIssue(e.target.value);
-    console.log("issue:", issue, e.target.value);
   };
 
   return (

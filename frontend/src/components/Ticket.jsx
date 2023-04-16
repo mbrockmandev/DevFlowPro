@@ -7,7 +7,7 @@ const Ticket = ({ ticket }) => {
     e.preventDefault();
 
     setShowEditModal(!showEditModal);
-    console.log("need to pass ticket", ticket);
+    // console.log("need to pass ticket", ticket);
   };
 
   return (
@@ -23,7 +23,7 @@ const Ticket = ({ ticket }) => {
           Edit
         </button>
       </div>
-      {showEditModal && <EditTicketForm ticket={ticket} setShowEditModal={setShowEditModal}/>}
+      {showEditModal && <EditTicketForm ticket={ticket} setShowEditModal={setShowEditModal} />}
     </div>
   );
 };
