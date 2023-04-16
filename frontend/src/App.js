@@ -1,11 +1,12 @@
-import Header from './components/Header';
-import Tickets from './components/Tickets';
-import Footer from './components/Footer';
-import LoginForm from './components/LoginForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { getToken } from './reducers/TokenReducer';
-import { Routes, Route } from 'react-router-dom';
+import Header from "./components/Header";
+import Tickets from "./components/Tickets";
+import Footer from "./components/Footer";
+import LoginForm from "./components/LoginForm";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getToken } from "./reducers/TokenReducer";
+import { Routes, Route } from "react-router-dom";
+import Spinner from "./components/Spinner";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,25 +19,15 @@ const App = () => {
   }, [dispatch]);
 
   if (!tokenRetrieved) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   return (
     <>
       <Header />
       <Routes>
-        {!token.isValid && (
-          <Route
-            path='/login'
-            element={<LoginForm />}
-          />
-        )}
-        {token.isValid && (
-          <Route
-            path='/tickets'
-            element={<Tickets />}
-          />
-        )}
+        {!token.isValid && <Route path="/login" element={<LoginForm />} />}
+        {token.isValid && <Route path="/tickets" element={<Tickets />} />}
       </Routes>
       <Footer />
     </>

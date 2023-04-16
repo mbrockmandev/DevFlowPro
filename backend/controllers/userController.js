@@ -1,15 +1,15 @@
-const asyncHandler = require('express-async-handler');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-const User = require('../models/userModel');
+const User = require("../models/userModel");
 
 // helper function
 // (has outrageous expiration -- can expand this functionality by making it expire
 // faster and refresh token by having user log back in)
 const generateToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d',
+    expiresIn: "30d",
   });
 
 // Register New User
@@ -21,14 +21,14 @@ const registerUser = asyncHandler(async (req, res) => {
   // validate
   if (!name || !email || !password) {
     res.status(400);
-    throw new Error('Please send all required data (name, email, password).');
+    throw new Error("Please send all required data (name, email, password).");
   }
 
   // check if user exists
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     res.status(400);
-    throw new Error('User Already Exists.');
+    throw new Error("User Already Exists.");
   }
 
   // hash pw
@@ -51,7 +51,7 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error('Invalid User Data.');
+    throw new Error("Invalid User Data.");
   }
 });
 
@@ -61,14 +61,14 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  console.log(req.body);
-  console.log('LOGIN USER (BACKEND)', email, password);
+  // console.log(req.body);
+  // console.log('LOGIN USER (BACKEND)', email, password);
 
   const user = await User.findOne({ email });
 
   if (!user) {
     res.status(401);
-    throw new Error('Please provide valid email and password!');
+    throw new Error("Please provide valid email and password!");
   }
 
   // check if exists with valid pw
@@ -82,7 +82,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(401);
-    throw new Error('Invalid Credentials!');
+    throw new Error("Invalid Credentials!");
   }
 });
 
@@ -99,10 +99,10 @@ const logoutUser = asyncHandler(async (req, res) => {
 // POST /api/users/checkToken
 // Public
 const checkToken = (req, res, next) => {
-  const auth = req.get('authorization');
+  const auth = req.get("authorization");
 
-  if (!auth || !auth.toLowerCase().startsWith('bearer ')) {
-    return res.status(401).json({ error: 'Invalid/Missing token.' });
+  if (!auth || !auth.toLowerCase().startsWith("bearer ")) {
+    return res.status(401).json({ error: "Invalid/Missing token." });
   }
 
   const token = auth.substring(7);

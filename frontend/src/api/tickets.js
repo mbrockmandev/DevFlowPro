@@ -18,6 +18,7 @@ export const getTicketById = async (id, token) => {
 };
 
 export const createNewTicket = async (newTicket, token) => {
+  // console.log("api create new ticket", newTicket, token);
   const config = applyAuthToken(token);
   const res = await axios.post(baseUrl, newTicket, config);
   return res.data;

@@ -37,6 +37,7 @@ export const initializeTickets = (token) => {
 };
 
 export const makeNewTicket = (content, token) => {
+  // console.log("make new ticket func in reducer: ", content, token);
   return async (dispatch) => {
     const newTicket = await createNewTicket(content, token);
     dispatch(addTicket(newTicket));

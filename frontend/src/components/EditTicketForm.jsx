@@ -1,53 +1,61 @@
 import { useDispatch, useSelector } from "react-redux";
-import { makeNewTicket } from "../reducers/TicketReducer";
+import { applyUpdatesToTicket } from "../reducers/TicketReducer";
 import { useState } from "react";
 
-const NewTicketForm = ({ show }) => {
+const EditTicketForm = ({ ticket, setShowEditModal }) => {
+  console.log('editTicketForm loaded!')
+  // tbd
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.notification);
   const token = useSelector((state) => state.token);
-  const [description, setDescription] = useState("");
-  const [issue, setIssue] = useState("Story");
+  const [description, setDescription] = useState(ticket.description);
+  const [issue, setIssue] = useState(ticket.issue);
 
+  // tbd
   const handleSubmit = (e) => {
     e.preventDefault();
     if (description === "") return;
-    // add new ticket stuff - dispatch etc.
-    console.log(token);
-    const newTicket = { issue, description, status: "New" };
-    console.log("handleSubmit new ticket: ", newTicket);
-    dispatch(makeNewTicket(newTicket, token.token));
+    // edit ticket info -- dispatch
+    if (issue !== ticket.issue || ticket.description ) {
+      const editedTicket = { issue, description }
+    }
+    // const editedTicket = { issue, description, status: "New" };
+    // console.log("handleSubmit new ticket: ", newTicket);
+    // dispatch(applyUpdatesToTicket(newTicket, token.token));
 
     // dismiss modal
     showHideModal(e);
   };
-  // continue html work on add ticket form -- need to center the div, give more area for description, and handle submission (and clicking x button to dismiss modal)
 
+
+  // tbd
   const showHideModal = (e) => {
     e.preventDefault();
 
     // toggle modal visibility
-    const modalClasses = document.getElementById("new-ticket-modal").classList;
+    const modalClasses = document.getElementById("edit-ticket-modal").classList;
     // could use visibility = gone instead?
     // consider resetting fields to blank?
     if (modalClasses.contains("hidden")) {
       modalClasses.remove("hidden");
-      show(true);
+      setShowEditModal(true);
     } else {
       modalClasses.add("hidden");
-      show(false);
+      setShowEditModal(false);
     }
   };
 
+  // tbd
   const handleChangeIssue = (e) => {
-    setIssue(e.target.value);
+    // setIssue(e.target.value);
     console.log("issue:", issue, e.target.value);
   };
 
+  // tbd
   return (
     <>
       <div
-        id="new-ticket-modal"
+        id="edit-ticket-modal"
         tabIndex="-1"
         aria-hidden="true"
         className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -57,7 +65,7 @@ const NewTicketForm = ({ show }) => {
             <button
               type="button"
               className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-              data-modal-hide="new-ticket-modal"
+              data-modal-hide="edit-ticket-modal"
               onClick={showHideModal}
             >
               <svg
@@ -77,7 +85,7 @@ const NewTicketForm = ({ show }) => {
             </button>
             <div className="px-6 py-6 lg:px-8">
               <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                Add a new ticket:
+                Edit your ticket:
               </h3>
               <form className="space-y-6" action="#">
                 <div>
@@ -85,7 +93,7 @@ const NewTicketForm = ({ show }) => {
                     htmlFor="issue"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Issue Issue:
+                    Issue:
                   </label>
                   <select
                     id="issue"
@@ -139,4 +147,4 @@ const NewTicketForm = ({ show }) => {
   );
 };
 
-export default NewTicketForm;
+export default EditTicketForm;

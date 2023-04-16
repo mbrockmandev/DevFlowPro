@@ -1,7 +1,7 @@
-const asyncHandler = require('express-async-handler');
+const asyncHandler = require("express-async-handler");
 
-const User = require('../models/userModel');
-const Ticket = require('../models/ticketModel');
+const User = require("../models/userModel");
+const Ticket = require("../models/ticketModel");
 
 // Get User Tickets
 // GET /api/tickets
@@ -12,7 +12,7 @@ const getAllTickets = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401);
-    throw new Error('User not found.');
+    throw new Error("User not found.");
   }
 
   // filter all tickets by user -- need to update for admins
@@ -29,20 +29,20 @@ const getTicketById = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401);
-    throw new Error('User Not Found!');
+    throw new Error("User Not Found!");
   }
 
   const ticket = await Ticket.findById(req.params.id);
 
   if (!ticket) {
     res.status(401);
-    throw new Error('Ticket Not Found!');
+    throw new Error("Ticket Not Found!");
   }
 
   // not allowed to get others' tickets
   if (ticket.user.toString() !== req.user.id) {
     res.status(403);
-    throw new Error('Unauthorized access!');
+    throw new Error("Unauthorized access!");
   }
 });
 
@@ -51,24 +51,25 @@ const getTicketById = asyncHandler(async (req, res) => {
 // Private
 const createTicket = asyncHandler(async (req, res) => {
   const { issue, description } = req.body;
+  // console.log("backend: ", issue, description);
 
   if (!issue || !description) {
     res.status(400);
-    throw new Error('Please include an issue and its description.');
+    throw new Error("Please include an issue and its description.");
   }
 
   const user = await User.findById(req.user.id);
 
   if (!user) {
     res.status(401);
-    throw new Error('User not found.');
+    throw new Error("User not found.");
   }
 
   const ticket = await Ticket.create({
     issue,
     description,
     user: req.user.id,
-    status: 'new',
+    status: "new",
   });
 
   res.status(201).json(ticket);
@@ -82,13 +83,13 @@ const changeTicket = asyncHandler(async (req, res) => {
 
   if (!ticket) {
     res.status(401);
-    throw new Error('Ticket Not Found!');
+    throw new Error("Ticket Not Found!");
   }
 
   // prevent other users as above
   if (ticket.user.toString() !== req.user.id) {
     res.status(403);
-    throw new Error('Unauthorized Access!');
+    throw new Error("Unauthorized Access!");
   }
 
   try {
@@ -99,7 +100,7 @@ const changeTicket = asyncHandler(async (req, res) => {
   } catch (error) {
     res.status(400);
     throw new Error(
-      `Unable to update item with ID: ${req.params.id}. Please double check ${req.body} for errors.`,
+      `Unable to update item with ID: ${req.params.id}. Please double check ${req.body} for errors.`
     );
   }
 });
@@ -112,14 +113,14 @@ const deleteTicket = asyncHandler(async (req, res) => {
 
   if (!ticket) {
     res.status(401);
-    throw new Error('Ticket not found!');
+    throw new Error("Ticket not found!");
   }
 
   // User who is not the owner is attempting to delete
   // Disallowed for now -- will also look for isAdmin flag later
   if (ticket.user.toString() !== req.user.id) {
     res.status(403);
-    throw new Error('Not Authorized.');
+    throw new Error("Not Authorized.");
   }
 
   await Ticket.findByIdAndDelete(req.params.id);
