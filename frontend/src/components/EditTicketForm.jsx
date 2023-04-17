@@ -11,13 +11,14 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
   const token = useSelector((state) => state.token);
   const [description, setDescription] = useState(ticket.description);
   const [issue, setIssue] = useState(ticket.issue);
+  const [status, setStatus] = useState(ticket.status);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (description === "") return;
     // edit ticket info -- dispatch
     if (issue !== ticket.issue || description !== ticket.description) {
-      const editedTicket = { id: ticket._id, issue, description };
+      const editedTicket = { id: ticket.id, issue, description };
       // console.log('editedTicket:', editedTicket);
       dispatch(applyUpdatesToTicket(editedTicket, token.token));
     }
@@ -50,6 +51,10 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
 
   const handleChangeIssue = (e) => {
     setIssue(e.target.value);
+  };
+
+  const handleChangeStatus = (e) => {
+    setStatus(e.target.value);
   };
 
   //TODO: TBD
@@ -90,25 +95,46 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
                 Edit your ticket:
               </h3>
               <form className="space-y-6" action="#">
-                <div>
-                  <label
-                    htmlFor="issue"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Issue:
-                  </label>
-                  <select
-                    id="issue"
-                    name="issue"
-                    value={issue}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    onChange={handleChangeIssue}
-                  >
-                    <option value="Epic">Epic</option>
-                    <option value="Story">Story</option>
-                    <option value="Task">Task</option>
-                    <option value="Subtask">Subtask</option>
-                  </select>
+                <div className="relative w-full h-16">
+                  <div className="absolute bottom-0 left-0 h-18 w-72">
+                    <label
+                      htmlFor="issue"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Issue:
+                    </label>
+                    <select
+                      id="issue"
+                      name="issue"
+                      value={issue}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      onChange={handleChangeIssue}
+                    >
+                      <option value="Epic">Epic</option>
+                      <option value="Story">Story</option>
+                      <option value="Task">Task</option>
+                      <option value="Subtask">Subtask</option>
+                    </select>
+                  </div>
+                  <div className="absolute bottom-0 right-0 h-18 w-64">
+                    <label
+                      htmlFor="status"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Status:
+                    </label>
+                    <select
+                      id="status"
+                      name="status"
+                      value={status}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      onChange={handleChangeStatus}
+                    >
+                      <option value="New">New</option>
+                      <option value="Open">Open</option>
+                      <option value="Closed">Closed</option>
+                    </select>
+                  </div>
                 </div>
                 <div>
                   <label
@@ -117,14 +143,14 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
                   >
                     Description:
                   </label>
-                  <input
+                  <textarea
                     type="description"
                     name="description"
                     id="description"
                     value={description}
                     onChange={({ target }) => setDescription(target.value)}
                     placeholder="I need it to be 50% smaller and 100% more on time."
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="resize-y bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
                 </div>
