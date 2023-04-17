@@ -11,6 +11,7 @@ const tokenSlice = createSlice({
   },
   reducers: {
     setTokenFromLocalStorage(state, action) {
+      console.log("set from local: ", action.payload);
       window.localStorage.setItem("jwt", JSON.stringify(action.payload.user));
     },
     getToken: (state, action) => {
@@ -20,6 +21,7 @@ const tokenSlice = createSlice({
         return state;
       }
 
+      console.log("token info:", token.email, token.token, token.isValid);
       return {
         ...state,
         email: token.email,

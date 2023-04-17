@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  getAllTickets,
   createNewTicket,
-  updateTicket,
+  getAllTickets,
   removeTicket,
+  updateTicket,
 } from "../api/tickets";
 
 const ticketSlice = createSlice({
@@ -17,7 +17,9 @@ const ticketSlice = createSlice({
       return [...state, action.payload];
     },
     applyChangesToTicket(state, action) {
-      const newState = state.map((t) => t._id === action.payload.id ? action.payload : t);
+      const newState = state.map((t) =>
+        t._id === action.payload.id ? action.payload : t
+      );
       return newState;
     },
     applyDelete(state, action) {
@@ -44,7 +46,7 @@ export const makeNewTicket = (content, token) => {
 
 export const applyUpdatesToTicket = (content, token) => {
   return async (dispatch) => {
-    const updatedTicket = { ...content, status: content.status }; //TODO: update other properties
+    const updatedTicket = { ...content, status: content.status };
     await updateTicket(content.id, updatedTicket, token);
     dispatch(applyChangesToTicket(updatedTicket));
   };

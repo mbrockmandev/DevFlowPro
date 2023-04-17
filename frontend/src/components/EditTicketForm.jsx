@@ -1,30 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
-import { applyUpdatesToTicket } from "../reducers/TicketReducer"
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { applyUpdatesToTicket } from "../reducers/TicketReducer";
 
 const EditTicketForm = ({ ticket, setShowEditModal }) => {
-  // tbd
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.notification);
   const token = useSelector((state) => state.token);
   const [description, setDescription] = useState(ticket.description);
   const [issue, setIssue] = useState(ticket.issue);
 
-  // tbd
   const handleSubmit = (e) => {
     e.preventDefault();
     if (description === "") return;
     // edit ticket info -- dispatch
     if (issue !== ticket.issue || description !== ticket.description) {
-      const editedTicket = { id: ticket._id, issue, description }
+      const editedTicket = { id: ticket._id, issue, description };
       // console.log('editedTicket:', editedTicket);
-      dispatch(applyUpdatesToTicket(editedTicket, token.token))
+      dispatch(applyUpdatesToTicket(editedTicket, token.token));
     }
     // dismiss modal
     showHideModal(e);
   };
 
-  // tbd
+  //TODO: TBD
   const showHideModal = (e) => {
     e.preventDefault();
 
@@ -45,7 +43,7 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
     setIssue(e.target.value);
   };
 
-  // tbd
+  //TODO: TBD
   return (
     <>
       <div
@@ -73,7 +71,8 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
                   fillRule="evenodd"
                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                   clipRule="evenodd"
-                ></path>
+                >
+                </path>
               </svg>
               <span className="sr-only">Close modal</span>
             </button>
