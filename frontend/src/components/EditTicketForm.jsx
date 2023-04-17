@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { applyUpdatesToTicket } from "../reducers/TicketReducer";
+import {
+  applyRemoveTicket,
+  applyUpdatesToTicket,
+} from "../reducers/TicketReducer";
 
 const EditTicketForm = ({ ticket, setShowEditModal }) => {
   const dispatch = useDispatch();
@@ -19,6 +22,12 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
       dispatch(applyUpdatesToTicket(editedTicket, token.token));
     }
     // dismiss modal
+    showHideModal(e);
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(applyRemoveTicket(ticket, token.token));
     showHideModal(e);
   };
 
@@ -126,10 +135,17 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="start-1/3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   onClick={handleSubmit}
                 >
-                  Modify Ticket
+                  Modify
+                </button>
+                <button
+                  type="submit"
+                  className="end-1/3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm ml-6 px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  onClick={handleDelete}
+                >
+                  Delete
                 </button>
               </form>
             </div>

@@ -12,12 +12,23 @@ const usersInDb = async () => {
   return users.map((u) => u.toJSON());
 };
 
-// get token
-//
+const getToken = (user) => {
+  const userForToken = {
+    username: user.username,
+    id: user._id,
+  };
+
+  return jwt.sign(userForToken, process.env.JWT_SECRET);
+};
+
 // initial tickets array
-//
+const initialTickets = [
+  {},
+];
 
 module.exports = {
   ticketsInDb,
   usersInDb,
+  getToken,
+  initialTickets,
 };
