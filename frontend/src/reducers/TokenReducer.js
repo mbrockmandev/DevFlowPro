@@ -21,7 +21,7 @@ const tokenSlice = createSlice({
         return state;
       }
 
-      console.log("token info:", token.email, token.token, token.isValid);
+      // console.log("token info:", token.email, token.token, token.isValid);
       return {
         ...state,
         email: token.email,

@@ -17,8 +17,11 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
     e.preventDefault();
     if (description === "") return;
     // edit ticket info -- dispatch
-    if (issue !== ticket.issue || description !== ticket.description) {
-      const editedTicket = { id: ticket.id, issue, description };
+    if (
+      issue !== ticket.issue || description !== ticket.description ||
+      status !== ticket.status
+    ) {
+      const editedTicket = { id: ticket.id, issue, description, status };
       // console.log('editedTicket:', editedTicket);
       dispatch(applyUpdatesToTicket(editedTicket, token.token));
     }
@@ -28,7 +31,7 @@ const EditTicketForm = ({ ticket, setShowEditModal }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(applyRemoveTicket(ticket, token.token));
+    dispatch(applyRemoveTicket(ticket.id, token.token));
     showHideModal(e);
   };
 

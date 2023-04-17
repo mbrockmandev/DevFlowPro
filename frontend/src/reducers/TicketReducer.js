@@ -10,7 +10,7 @@ const ticketSlice = createSlice({
   name: "tickets",
   initialState: [],
   reducers: {
-    setTickets(state, action) {
+    setTickets(_state, action) {
       return action.payload;
     },
     addTicket(state, action) {
@@ -18,12 +18,12 @@ const ticketSlice = createSlice({
     },
     applyChangesToTicket(state, action) {
       const newState = state.map((t) =>
-        t._id === action.payload.id ? action.payload : t
+        t.id === action.payload.id ? action.payload : t
       );
       return newState;
     },
     applyDelete(state, action) {
-      const newState = state.filter((t) => t.id !== action.payload.id);
+      const newState = state.filter((t) => t.id !== action.payload);
       return newState;
     },
   },
@@ -46,7 +46,11 @@ export const makeNewTicket = (content, token) => {
 
 export const applyUpdatesToTicket = (content, token) => {
   return async (dispatch) => {
-    const updatedTicket = { ...content, status: content.status };
+    const updatedTicket = {
+      ...content,
+      issue: content.issue,
+      status: content.status,
+    };
     await updateTicket(content.id, updatedTicket, token);
     dispatch(applyChangesToTicket(updatedTicket));
   };

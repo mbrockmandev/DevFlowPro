@@ -78,7 +78,7 @@ const NewTicketForm = ({ show }) => {
               <form className="space-y-6" action="#">
                 <div>
                   <label
-                    htmlFor="status"
+                    htmlFor="issue"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Issue Issue:

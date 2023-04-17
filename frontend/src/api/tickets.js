@@ -20,18 +20,21 @@ export const getTicketById = async (id, token) => {
 export const createNewTicket = async (newTicket, token) => {
   // console.log("api create new ticket", newTicket, token);
   const config = applyAuthToken(token);
+
   const res = await axios.post(baseUrl, newTicket, config);
   return res.data;
 };
 
 export const updateTicket = async (id, data, token) => {
   const config = applyAuthToken(token);
+
   const res = await axios.put(`${baseUrl}/${id}`, data, config);
   return res.data;
 };
 
 export const removeTicket = async (id, token) => {
   const config = applyAuthToken(token);
+  console.log(`${baseUrl}/${id}`, config);
   const res = await axios.delete(`${baseUrl}/${id}`, config);
   return res.data;
 };

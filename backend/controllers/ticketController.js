@@ -51,7 +51,6 @@ const getTicketById = asyncHandler(async (req, res) => {
 // Private
 const createTicket = asyncHandler(async (req, res) => {
   const { issue, description } = req.body;
-  // console.log("backend: ", issue, description);
 
   if (!issue || !description) {
     res.status(400);
@@ -69,7 +68,7 @@ const createTicket = asyncHandler(async (req, res) => {
     issue,
     description,
     user: req.user.id,
-    status: "new",
+    status: "New",
   });
 
   res.status(201).json(ticket);
@@ -80,7 +79,7 @@ const createTicket = asyncHandler(async (req, res) => {
 // Private
 const changeTicket = asyncHandler(async (req, res) => {
   const ticket = await Ticket.findById(req.params.id);
-  console.log('backend ticket:', ticket);
+  console.log("backend ticket:", ticket);
 
   if (!ticket) {
     res.status(401);
@@ -101,7 +100,7 @@ const changeTicket = asyncHandler(async (req, res) => {
   } catch (error) {
     res.status(400);
     throw new Error(
-      `Unable to update item with ID: ${req.params.id}. Please double check ${req.body} for errors.`
+      `Unable to update item with ID: ${req.params.id}. Please double check ${req.body} for errors.`,
     );
   }
 });
@@ -111,6 +110,7 @@ const changeTicket = asyncHandler(async (req, res) => {
 // Private
 const deleteTicket = asyncHandler(async (req, res) => {
   const ticket = await Ticket.findById(req.params.id);
+  console.log("deleting ticket:", ticket);
 
   if (!ticket) {
     res.status(401);

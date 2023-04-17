@@ -18,7 +18,6 @@ const App = () => {
     const retrieveToken = (() => {
       dispatch(getToken());
       if (!token.isValid) {
-        console.log('token:', token.token)
         navigate('/login');
       } else {
         navigate('/tickets')
