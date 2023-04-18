@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import wind from "../wind.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,8 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
+  const atLoginMenu = window.location.href.endsWith('login');
+  const atRegisterMenu = window.location.href.endsWith('register')
 
   const handleMenuClick = (e) => {
     e.preventDefault();
@@ -25,7 +27,6 @@ const Header = () => {
 
   const handleLogout = async (e) => {
     e.preventDefault();
-    // send token to backend to be invalidated
     await axios.post("/api/users/logout", token);
     localStorage.removeItem("jwt");
     dispatch(logUserOut());
@@ -33,7 +34,6 @@ const Header = () => {
   };
 
   const handleLogoClick = () => {
-    console.log("logo clicked!");
     if (!token.isValid) {
       navigate("/login");
     } else {
@@ -51,10 +51,10 @@ const Header = () => {
           <img
             src={wind}
             alt=""
-            className="inline-block"
+            className="inline-block mr-1"
             width="24"
           />
-          <span className="font-semibold text-xl tracking-tight hover:text-blue-200">
+          <span className="font-semibold text-xl tracking-tight hover:text-blue-200 hover:border-b">
             DevFlowPro
           </span>
         </div>
@@ -110,8 +110,16 @@ const Header = () => {
                 Logout
               </Link>
             )}
-            {!token.isValid && (
-              <Link
+            {(atLoginMenu &&
+              < Link
+                to="/register"
+                className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0"
+              >
+                Register
+              </Link>
+            )}
+            {(atRegisterMenu &&
+              < Link
                 to="/login"
                 className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 md:mt-0"
               >
@@ -120,7 +128,7 @@ const Header = () => {
             )}
           </div>
         </div>
-      </nav>
+      </nav >
     </>
   );
 };

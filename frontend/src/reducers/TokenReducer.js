@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { login } from "../api/login";
+import { register } from "../api/users";
 
 const tokenSlice = createSlice({
   name: "token",
@@ -71,6 +72,12 @@ export const logUserOut = () => {
     dispatch(updateLoggedInUser(null));
   };
 };
+
+export const registerUser = (credentials) => {
+  return (dispatch) => {
+    dispatch(register(credentials));
+  }
+}
 
 export const { setToken, getToken, checkIfTokenIsValid, updateLoggedInUser } =
   tokenSlice.actions;

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Admin = () => {
-  return <Link to='/admin'>Admin Page TBD...</Link>;
+  return (
+    <div className="absolute top-32 bottom-32 -z-10  overflow-y-auto">
+      Admin!
+    </div>);
 };
 
 export default Admin;
