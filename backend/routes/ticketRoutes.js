@@ -13,7 +13,6 @@ const { protect } = require("../middleware/authMiddleware");
 
 // consider having unprotected route for all tickets?
 /**
- * @swagger
  * /tickets:
  *   get:
  *     summary: Get All Tickets
@@ -25,7 +24,6 @@ const { protect } = require("../middleware/authMiddleware");
 router.route("/").get(protect, getAllTickets);
 
 /**
- * @swagger
  * /tickets:
  *   post:
  *     summary: Create a New Ticket
@@ -37,7 +35,6 @@ router.route("/").get(protect, getAllTickets);
 router.route("/").post(protect, createTicket);
 
 /**
- * @swagger
  * /tickets/:id:
  *   get:
  *     summary: Get A Ticket By ID
@@ -49,7 +46,6 @@ router.route("/").post(protect, createTicket);
 router.route("/:id").get(protect, getTicketById);
 
 /**
- * @swagger
  * /tickets/:id:
  *   put:
  *     summary: updates ticket matching ID
@@ -61,7 +57,6 @@ router.route("/:id").get(protect, getTicketById);
 router.route("/:id").put(protect, changeTicket);
 
 /**
- * @swagger
  * /tickets/:id:
  *   delete:
  *     summary: removes ticket matching that ID

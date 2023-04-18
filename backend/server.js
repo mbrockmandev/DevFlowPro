@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 // routes
 app.use("/api/users/", require("./routes/userRoutes"));
 app.use("/api/tickets/", require("./routes/ticketRoutes"));
-app.use("/api/help/", require("./swagger"));
+app.use("/api/help/", require("./routes/apiRoutes"));
 
 // middleware
 app.use(errorHandler);

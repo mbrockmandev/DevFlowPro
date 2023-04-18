@@ -48,6 +48,9 @@ const tokenSlice = createSlice({
       }
     },
     updateLoggedInUser: (state, action) => {
+      if (action.payload === null) {
+        return { token: null, isValid: false, email: "" };
+      }
       const { email, token } = action.payload;
       return { ...state, email, token, isValid: true };
     },
@@ -59,6 +62,13 @@ export const logUserIn = (credentials) => {
     const user = await login(credentials);
     dispatch(setToken(user));
     dispatch(updateLoggedInUser(user));
+  };
+};
+
+export const logUserOut = () => {
+  return async (dispatch) => {
+    dispatch(setToken(null));
+    dispatch(updateLoggedInUser(null));
   };
 };
 
