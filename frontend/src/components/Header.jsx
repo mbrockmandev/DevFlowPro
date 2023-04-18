@@ -43,7 +43,7 @@ const Header = () => {
 
   return (
     <>
-      <nav className="flex items-center justify-between flex-wrap bg-blue-700 p-6">
+      <nav className="fixed top-0 left-0 right-0 flex items-center justify-between flex-wrap bg-blue-700 p-6">
         <div
           className="logo flex items-center flex-shrink-0 text-white mr-6"
           onClick={handleLogoClick}

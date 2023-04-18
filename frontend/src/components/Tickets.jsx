@@ -13,7 +13,7 @@ const Tickets = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       dispatch(initializeTickets(token));
     };
     fetchData();
@@ -27,7 +27,7 @@ const Tickets = () => {
   if (!tickets) return <Spinner />;
 
   return (
-    <div className="max-h-screen-60">
+    <div className="absolute top-32 bottom-32 -z-10  overflow-y-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
         {tickets.map((ticket) => <Ticket key={uuid()} ticket={ticket} />)}
       </div>
