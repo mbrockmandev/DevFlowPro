@@ -66,7 +66,7 @@ export const logUserIn = (credentials) => {
 };
 
 export const logUserOut = () => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch(setToken(null));
     dispatch(updateLoggedInUser(null));
   };

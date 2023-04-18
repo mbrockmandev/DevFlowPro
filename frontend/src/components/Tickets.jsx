@@ -33,7 +33,7 @@ const Tickets = () => {
       </div>
       <div className="container-new-ticket">
         <button
-          className="block text-white bg-blue-700 hover:bg-blue-800 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 m-4"
+          className="block text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 m-4 shadow-md"
           type="button"
           data-modal-target="new-ticket-modal"
           data-modal-toggle="new-ticket-modal"

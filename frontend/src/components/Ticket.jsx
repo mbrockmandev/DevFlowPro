@@ -15,7 +15,7 @@ const Ticket = ({ ticket }) => {
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-500">Status: {ticket.status}</span>
         <button
-          className="absolute right-3 bottom-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="absolute right-3 bottom-3 px-4 py-2 bg-blue-500 text-white rounded shadow-sm hover:bg-blue-600"
           onClick={handleClick}
         >
           Edit
