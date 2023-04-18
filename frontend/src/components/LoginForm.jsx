@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { logUserIn } from "../reducers/TokenReducer";
 import { useNavigate } from "react-router-dom";
 
@@ -26,20 +26,20 @@ const LoginForm = () => {
   if (token.isValid) return null;
 
   return (
-    <div className="container absolute top-40 mx-auto">
+    <div className="container absolute top-40 left-40 w-full">
       <form onSubmit={handleLogin}>
         <label className="relative top-0 left-4 text-lg font-mono font-semibold">Login</label>
         <div className="">
           <label
             htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="relative ml-4 text-sm font-medium text-black"
           >
-            Your email
+            Email
           </label>
           <input
             type="email"
             id="email"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-4 sm:w-auto"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-4"
             placeholder="mike@gmail.com"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
@@ -49,14 +49,14 @@ const LoginForm = () => {
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="relative ml-4 text-sm font-medium text-black"
           >
-            Your password
+            Password
           </label>
           <input
             type="password"
             id="password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-4 sm:w-auto"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mx-4"
             placeholder="secret"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
