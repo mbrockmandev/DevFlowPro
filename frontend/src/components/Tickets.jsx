@@ -27,11 +27,9 @@ const Tickets = () => {
   if (!tickets) return <Spinner />;
 
   return (
-    <div>
+    <div className="max-h-screen-60">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
-        {tickets.map((ticket) => (
-          <Ticket key={uuid()} ticket={ticket} />
-        ))}
+        {tickets.map((ticket) => <Ticket key={uuid()} ticket={ticket} />)}
       </div>
       <div className="container-new-ticket">
         <button

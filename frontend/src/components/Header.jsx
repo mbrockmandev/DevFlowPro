@@ -32,17 +32,29 @@ const Header = () => {
     navigate("/login");
   };
 
+  const handleLogoClick = () => {
+    console.log("logo clicked!");
+    if (!token.isValid) {
+      navigate("/login");
+    } else {
+      navigate("/tickets");
+    }
+  };
+
   return (
     <>
       <nav className="flex items-center justify-between flex-wrap bg-blue-700 p-6">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
+        <div
+          className="logo flex items-center flex-shrink-0 text-white mr-6"
+          onClick={handleLogoClick}
+        >
           <img
             src={wind}
             alt=""
             className="inline-block"
             width="24"
           />
-          <span className="font-semibold text-xl tracking-tight">
+          <span className="font-semibold text-xl tracking-tight hover:text-blue-200">
             DevFlowPro
           </span>
         </div>
@@ -66,24 +78,24 @@ const Header = () => {
         </div>
         <div
           id="menu-items"
-          className="w-full block flex-grow md:flex md:items-center md:w-auto"
+          className="w-full inline-block flex-grow md:items-center md:w-auto md:flex md:justify-end"
         >
           <div className="text-sm md:flex-grow">
             <Link
               to="/tickets"
-              className="hidden menu-item mt-4 md:inline-block md:mt-0 text-blue-200 hover:text-white mr-4"
+              className="hidden menu-item mt-4 md:inline-block md:mt-0 text-white hover:text-blue-200 mr-4 hover:border-b"
             >
               Tickets
             </Link>
             <Link
               to="/admin"
-              className="hidden menu-item mt-4 md:inline-block md:mt-0 text-blue-200 hover:text-white mr-4"
+              className="hidden menu-item mt-4 md:inline-block md:mt-0 text-white hover:text-blue-200 mr-4 hover:border-b"
             >
               Admin
             </Link>
-            <Link // may later change to swagger ui from front end
-              to="http://localhost:3001/api/help"
-              className="hidden menu-item mt-4 md:inline-block md:mt-0 text-blue-200 hover:text-white"
+            <Link
+              to="/api/help"
+              className="hidden menu-item mt-4 md:inline-block md:mt-0 text-white hover:text-blue-200 hover:border-b"
             >
               API
             </Link>

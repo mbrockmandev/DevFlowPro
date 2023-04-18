@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { makeNewTicket } from "../reducers/TicketReducer";
+import { showThis } from "../reducers/NotificationReducer.js";
 import { useState } from "react";
 
 const NewTicketForm = ({ show }) => {
@@ -11,7 +12,21 @@ const NewTicketForm = ({ show }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (description === "") return;
+    if (description === "") {
+      dispatch(showThis({
+        message: "Description cannot be left blank.",
+        duration: 5000,
+      }));
+      return;
+    }
+    if (description.length > 360) {
+      dispatch(showThis({
+        message: "Description must be fewer than 360 characters.",
+        duration: 5000,
+      }));
+      return;
+    }
+
     const newTicket = { issue, description, status: "New" };
     dispatch(makeNewTicket(newTicket, token.token));
 
@@ -81,7 +96,7 @@ const NewTicketForm = ({ show }) => {
                     htmlFor="issue"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Issue Issue:
+                    Issue:
                   </label>
                   <select
                     id="issue"
@@ -103,7 +118,7 @@ const NewTicketForm = ({ show }) => {
                   >
                     Description:
                   </label>
-                  <input
+                  <textarea
                     type="description"
                     name="description"
                     id="description"

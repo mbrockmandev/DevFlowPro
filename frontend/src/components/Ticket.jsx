@@ -5,13 +5,11 @@ const Ticket = ({ ticket }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const handleClick = (e) => {
     e.preventDefault();
-
     setShowEditModal(!showEditModal);
-    // console.log("need to pass ticket", ticket);
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mx-4">
+    <div className="bg-white rounded-lg shadow-md p-6 mx-4 max-h-fit">
       <h2 className="text-xl font-medium mb-4">Issue: {ticket.issue}</h2>
       <p className="text-gray-600 mb-4">Description: {ticket.description}</p>
       <div className="flex justify-between items-center">
@@ -23,7 +21,9 @@ const Ticket = ({ ticket }) => {
           Edit
         </button>
       </div>
-      {showEditModal && <EditTicketForm ticket={ticket} setShowEditModal={setShowEditModal} />}
+      {showEditModal && (
+        <EditTicketForm ticket={ticket} setShowEditModal={setShowEditModal} />
+      )}
     </div>
   );
 };
