@@ -8,15 +8,15 @@ DevFlowPro is a kanban-style ticket tracker for software development intended to
 
 ## Images
 
-###Register Form
+### Register Form
 ![register form](https://user-images.githubusercontent.com/105233492/233062806-d6e680d2-abc0-4e91-b640-a73306abd9d2.png)
-###Login Form
+### Login Form
 ![login form](https://user-images.githubusercontent.com/105233492/233062868-0e807aa7-237e-41b5-aacb-9ec417989eec.png)
-###Ticket Layout (widescreen)
+### Ticket Layout (widescreen)
 ![ticket layout full](https://user-images.githubusercontent.com/105233492/233062879-b56f8088-f005-492a-be7f-259c6296d56b.png)
-###Ticket Layout (mobile)
+### Ticket Layout (mobile)
 ![mobile layout](https://user-images.githubusercontent.com/105233492/233062891-89870f80-c0e2-4a06-b334-030f5e4ab655.png)
-###Edit Ticket Form
+### Edit Ticket Form
 ![edit form](https://user-images.githubusercontent.com/105233492/233062912-0fce3aca-631e-4b09-9b70-22d1c051633c.png)
 
 ## Features
