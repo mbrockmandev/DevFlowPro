@@ -31,7 +31,7 @@ const RegisterForm = () => {
   if (token.isValid) return null;
 
   return (
-    <div className="container absolute top-40 left-40">
+    <div className="container relative top-40 left-28">
       <form onSubmit={handleRegisterUser}>
         <label className="relative top-0 left-4 text-lg font-mono font-semibold">Register</label>
         <input
@@ -43,6 +43,7 @@ const RegisterForm = () => {
         />
         <label
           htmlFor="admin"
+          className="ml-2 font-mono font-semibold"
         >
           Admin?
         </label>

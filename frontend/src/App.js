@@ -28,7 +28,7 @@ const App = () => {
       setTokenRetrieved(true);
     });
     retrieveToken();
-  }, [dispatch]);
+  }, []);
 
   if (!tokenRetrieved) {
     return <Spinner />;
@@ -39,10 +39,10 @@ const App = () => {
       <Header />
       <Routes>
         {!token.isValid && <Route path="/login" element={<LoginForm />} />}
+        {!token.isValid && <Route path="/register" element={<RegisterForm />} />}
         {token.isValid && <Route path="/tickets" element={<Tickets />} />}
         {token.isValid && <Route path="/admin" element={<Admin />} />}
         {token.isValid && <Route path="/api/help" element={<ApiLanding />} />}
-        {<Route path="/register" element={<RegisterForm />} />}
       </Routes>
       <Footer />
     </>

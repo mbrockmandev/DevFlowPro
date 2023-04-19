@@ -26,7 +26,7 @@ const LoginForm = () => {
   if (token.isValid) return null;
 
   return (
-    <div className="container absolute top-40 left-40 w-full">
+    <div className="container absolute top-40 left-28">
       <form onSubmit={handleLogin}>
         <label className="relative top-0 left-4 text-lg font-mono font-semibold">Login</label>
         <div className="">
