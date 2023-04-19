@@ -21,7 +21,7 @@ DevFlowPro is a kanban-style ticket tracker for software development intended to
 
 ## Features
 
-Currently, DevFlowPro is connected to a MongoDB with Express, NodeJS, and features a React UI. Users may add, edit, or delete tickets as needed. JWT is used to verify a user has authenticated with the system. 
+Currently, DevFlowPro is connected to a MongoDB with Express, NodeJS, and features a React UI with TailwindCSS. Users may add, edit, or delete tickets as needed. JWT is used to verify a user has authenticated with the system. 
 
 Future plans include:
 -Swagger-style UI for testing the API from the front end
